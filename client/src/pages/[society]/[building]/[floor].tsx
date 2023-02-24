@@ -30,7 +30,7 @@ function Floor() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col justify-start h-screen bg-myblack">
-        <h1 className="px-5 text-5xl font-title py-7">
+        <h1 className="px-5 text-5xl font-title py-7" onClick={()=>router.push("/")}>
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
         </h1>
@@ -96,7 +96,7 @@ function Floor() {
           <div className="text-mywhite"></div>
         </section>
 
-        <section className="my-5 mt-5 overflow-scroll">
+        <section className="my-5 mt-5 overflow-y-scroll">
           <h1 className="pb-2 mx-5 my-3 text-2xl border-b-2 border-gray-800 text-mywhite">
             Flats
           </h1>
