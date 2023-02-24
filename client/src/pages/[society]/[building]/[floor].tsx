@@ -5,7 +5,7 @@ import Head from "next/head";
 import SelectBlock from "@/components/selectBlock";
 import SelectFloor from "@/components/selectFloor";
 import Core from "@/components/core";
-import { BsArrowRightCircleFill } from "react-icons/bs";
+import FlatCard from "@/components/flatCard";
 
 function Floor() {
   const router = useRouter();
@@ -96,62 +96,7 @@ function Floor() {
             Flats
           </h1>
           <div className="flex flex-col gap-4 mx-5">
-            <div className="flex justify-between h-[6rem] p-2 border-2 border-gray-700 rounded-md">
-              <div className="w-[25%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-3xl rounded-lg">
-                3064
-              </div>
-              <div className="w-[73%] flex justify-between items-center">
-                <div className="flex flex-wrap justify-start gap-4 text-xl font-medium text-mywhite">
-                  <h3>3 BHK</h3>
-                  <h4>2 Bathroom</h4>
-                  <h4>Furnished</h4>
-                  <h4 className="text-xl font-bold text-mygreen">Available</h4>
-                </div>
-                <BsArrowRightCircleFill size={60} className="text-gray-600" />
-              </div>
-            </div>
-            <div className="flex justify-between h-[6rem] p-2 border-2 border-gray-700 rounded-md">
-              <div className="w-[25%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-3xl rounded-lg">
-                3064
-              </div>
-              <div className="w-[73%] flex justify-between items-center">
-                <div className="flex flex-wrap justify-start gap-4 text-xl font-medium text-mywhite">
-                  <h3>3 BHK</h3>
-                  <h4>2 Bathroom</h4>
-                  <h4>Furnished</h4>
-                  <h4 className="text-xl font-bold text-mygreen">Available</h4>
-                </div>
-                <BsArrowRightCircleFill size={60} className="text-gray-600" />
-              </div>
-            </div>
-            <div className="flex justify-between h-[6rem] p-2 border-2 border-gray-700 rounded-md">
-              <div className="w-[25%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-3xl rounded-lg">
-                3064
-              </div>
-              <div className="w-[73%] flex justify-between items-center">
-                <div className="flex flex-wrap justify-start gap-4 text-xl font-medium text-mywhite">
-                  <h3>3 BHK</h3>
-                  <h4>2 Bathroom</h4>
-                  <h4>Furnished</h4>
-                  <h4 className="text-xl font-bold text-mygreen">Available</h4>
-                </div>
-                <BsArrowRightCircleFill size={60} className="text-gray-600" />
-              </div>
-            </div>
-            <div className="flex justify-between h-[6rem] p-2 border-2 border-gray-700 rounded-md">
-              <div className="w-[25%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-3xl rounded-lg">
-                3064
-              </div>
-              <div className="w-[73%] flex justify-between items-center">
-                <div className="flex flex-wrap justify-start gap-4 text-xl font-medium text-mywhite">
-                  <h3>3 BHK</h3>
-                  <h4>2 Bathroom</h4>
-                  <h4>Furnished</h4>
-                  <h4 className="text-xl font-bold text-mygreen">Available</h4>
-                </div>
-                <BsArrowRightCircleFill size={60} className="text-gray-600" />
-              </div>
-            </div>
+            <FlatCard />
           </div>
         </section>
       </main>
