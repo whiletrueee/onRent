@@ -21,10 +21,10 @@ function DropdownSelect({
         as="select"
         id={name}
         name={name}
-        className="w-full px-4 py-1 text-lg font-medium border-2 border-gray-400 rounded-md outline-none text-mywhite bg-myblack"
+        className="w-full px-4 py-1 text-lg font-medium border-2 border-gray-400 rounded-md outline-none appearance-none text-mywhite bg-myblack"
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="">
+          <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
