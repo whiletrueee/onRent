@@ -1,3 +1,4 @@
+import InputField from "@/components/inputField";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
@@ -36,35 +37,18 @@ function Login() {
                 className="flex flex-col justify-start gap-4"
                 onSubmit={formik.handleSubmit}
               >
-                <div className="flex flex-col gap-1">
-                  <label className="pl-4 text-xl text-mywhite" htmlFor="name">
-                    E-mail
-                  </label>
-                  <div className="h-[5rem]">
-                    <Field
-                      name="email"
-                      type="text"
-                      className="w-full px-4 py-2 text-lg font-medium border-2 rounded-full outline-none text-mywhite bg-myblack border-mywhite"
-                      placeholder="enter email"
-                    />
-                    <ErrorMessage name="email" render={renderError} />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="pl-4 text-xl text-mywhite" htmlFor="name">
-                    Password
-                  </label>
-                  <div className="h-[5rem]">
-                    <Field
-                      name="password"
-                      type="password"
-                      className="w-full px-4 py-2 text-lg font-medium border-2 rounded-full outline-none text-mywhite bg-myblack border-mywhite"
-                      placeholder="enter password"
-                    />
-                    <ErrorMessage name="password" render={renderError} />
-                  </div>
-                </div>
-
+                <InputField
+                  name={"email"}
+                  label={"E-Mail"}
+                  type={"text"}
+                  placeholder={"Enter E-Mail"}
+                />
+                <InputField
+                  name={"password"}
+                  label={"Password"}
+                  type={"password"}
+                  placeholder={"Enter Password"}
+                />
                 <button
                   onClick={() => {
                     router.push("/society");
