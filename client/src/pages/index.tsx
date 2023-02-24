@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col items-center justify-center h-screen px-10 bg-myblack py-7 font-content">
+      <main className="flex flex-col items-center justify-center h-screen px-10 bg-myblack font-content">
         <div className="">
           <h1 className="text-6xl font-title">
             <span className=" text-mygreen">on</span>
