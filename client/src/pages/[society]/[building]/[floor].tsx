@@ -6,15 +6,18 @@ import SelectBlock from "@/components/selectBlock";
 import SelectFloor from "@/components/selectFloor";
 import Core from "@/components/core";
 import FlatCard from "@/components/flatCard";
+import { estanciaFlats } from "@/utils/constants/data";
 
 function Floor() {
   const router = useRouter();
   const { society, building, floor } = router.query;
   const [selectBlock, setSelectBlock] = useState(false);
   const [selectFloor, setSelectFloor] = useState(false);
-  const [core, setCore] = useState(1);
+  const [core, setCore] = useState(0);
   const [floors, setFloor] = useState(floor);
   const [buildings, setBuildings] = useState(building);
+  const [floorNumber, setFloorNumber] = useState(1);
+  const [buildingNumber, setBuildingNumber] = useState(1);
 
   return (
     <>
@@ -70,6 +73,7 @@ function Floor() {
 
           {selectBlock && (
             <SelectBlock
+              setBuildingNumber={setBuildingNumber}
               setBuildings={setBuildings}
               floors={floors}
               setSelectBlock={setSelectBlock}
@@ -77,6 +81,7 @@ function Floor() {
           )}
           {selectFloor && (
             <SelectFloor
+              setFloorNumber={setFloorNumber}
               setFloor={setFloor}
               buildings={buildings}
               setSelectFloor={setSelectFloor}
@@ -96,7 +101,17 @@ function Floor() {
             Flats
           </h1>
           <div className="flex flex-col gap-4 mx-5">
-            <FlatCard />
+            {estanciaFlats.map((item) => {
+              return (
+                <FlatCard
+                  society={society}
+                  id={item}
+                  key={item}
+                  buildingNumber={buildingNumber}
+                  floorNumber={floorNumber}
+                />
+              );
+            })}
           </div>
         </section>
       </main>

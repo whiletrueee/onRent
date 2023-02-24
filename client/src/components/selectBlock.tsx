@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { Dispatch, SetStateAction } from "react";
 
 function SelectBlock({
+  setBuildingNumber,
   setBuildings,
   floors,
   setSelectBlock,
 }: {
+  setBuildingNumber: Dispatch<SetStateAction<number>>;
   setBuildings: Dispatch<SetStateAction<string | string[] | undefined>>;
   floors: string | string[] | undefined;
   setSelectBlock: Dispatch<SetStateAction<boolean>>;
@@ -39,13 +41,14 @@ function SelectBlock({
                 className="px-4 py-2 text-lg font-semibold border-2 border-gray-700 rounded-md text-mywhite"
                 key={items}
                 onClick={() => {
-                  const block = String.fromCharCode(items+64)
+                  const block = String.fromCharCode(items + 64);
                   setBuildings(`Block-${block}`);
+                  setBuildingNumber(items);
                   router.push(`/${society}/Block-${block}/${floors}`);
                   setSelectBlock(false);
                 }}
               >
-                Block-{String.fromCharCode(items+64)}
+                Block-{String.fromCharCode(items + 64)}
               </button>
             );
           })}
@@ -59,6 +62,7 @@ function SelectBlock({
                 key={items}
                 onClick={() => {
                   setBuildings(`Tower-${items}`);
+                  setBuildingNumber(items);
                   router.push(`/${society}/Tower-${items}/${floors}`);
                   setSelectBlock(false);
                 }}

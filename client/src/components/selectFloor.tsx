@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 
 function SelectFloor({
+  setFloorNumber,
   setFloor,
   buildings,
   setSelectFloor,
 }: {
+  setFloorNumber: Dispatch<SetStateAction<number>>;
   setFloor: Dispatch<SetStateAction<string | string[] | undefined>>;
   buildings: string | string[] | undefined;
   setSelectFloor: Dispatch<SetStateAction<boolean>>;
@@ -25,6 +27,7 @@ function SelectFloor({
                 key={items}
                 onClick={() => {
                   setFloor(`Floor-${items}`);
+                  setFloorNumber(items);
                   setSelectFloor(false);
                   router.push(`/${society}/${buildings}/Floor-${items}`);
                 }}
@@ -43,6 +46,7 @@ function SelectFloor({
                 key={items}
                 onClick={() => {
                   setFloor(`Floor-${items}`);
+                  setFloorNumber(items);
                   setSelectFloor(false);
                   router.push(`/${society}/${buildings}/Floor-${items}`);
                 }}
