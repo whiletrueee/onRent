@@ -38,4 +38,5 @@ export const AbodeBlocks = [
   23, 24, 25, 26,
 ];
 
-export const estanciaFlats = [1,2,3,4];
+export const estanciaFlats = [1, 2, 3, 4];
+export const abodeFlats = [1, 2, 3, 4, 5, 6, 7, 8];

@@ -20,37 +20,29 @@ function SelectBlock({
     <div className="relative z-10 p-2 bg-myblack">
       {society === "Abode" ? (
         <div className="flex flex-wrap justify-start gap-4 mt-4">
-          {/* {abodeBlock.map((items, i) => {
-            return (
-              <button
-                className="px-4 py-2 text-lg font-semibold border-2 border-gray-700 rounded-md text-mywhite"
-                key={i}
-                onClick={() => {
-                  setBuildings(`Block-${items}`);
-                  router.push(`/${society}/Block-${items}/${floors}`);
-                  setSelectBlock(false);
-                }}
-              >
-                Block-{items}
-              </button>
-            );
-          })} */}
           {AbodeBlocks.map((items) => {
-            return (
-              <button
-                className="px-4 py-2 text-lg font-semibold border-2 border-gray-700 rounded-md text-mywhite"
-                key={items}
-                onClick={() => {
-                  const block = String.fromCharCode(items + 64);
-                  setBuildings(`Block-${block}`);
-                  setBuildingNumber(items);
-                  router.push(`/${society}/Block-${block}/${floors}`);
-                  setSelectBlock(false);
-                }}
-              >
-                Block-{String.fromCharCode(items + 64)}
-              </button>
-            );
+            const block = String.fromCharCode(items + 64);
+            if (
+              block !== "O" &&
+              block !== "I" &&
+              block !== "X" &&
+              block !== "U"
+            ) {
+              return (
+                <button
+                  className="px-4 py-2 text-lg font-semibold border-2 border-gray-700 rounded-md text-mywhite"
+                  key={items}
+                  onClick={() => {
+                    setBuildings(`Block-${block}`);
+                    setBuildingNumber(items);
+                    router.push(`/${society}/Block-${block}/${floors}`);
+                    setSelectBlock(false);
+                  }}
+                >
+                  Block-{String.fromCharCode(items + 64)}
+                </button>
+              );
+            }
           })}
         </div>
       ) : (

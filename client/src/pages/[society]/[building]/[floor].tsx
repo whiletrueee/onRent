@@ -6,7 +6,7 @@ import SelectBlock from "@/components/selectBlock";
 import SelectFloor from "@/components/selectFloor";
 import Core from "@/components/core";
 import FlatCard from "@/components/flatCard";
-import { estanciaFlats } from "@/utils/constants/data";
+import { abodeFlats, estanciaFlats } from "@/utils/constants/data";
 
 function Floor() {
   const router = useRouter();
@@ -96,22 +96,40 @@ function Floor() {
           <div className="text-mywhite"></div>
         </section>
 
-        <section className="mt-5">
+        <section className="my-5 mt-5 overflow-scroll">
           <h1 className="pb-2 mx-5 my-3 text-2xl border-b-2 border-gray-800 text-mywhite">
             Flats
           </h1>
-          <div className="flex flex-col gap-4 mx-5">
-            {estanciaFlats.map((item) => {
-              return (
-                <FlatCard
-                  society={society}
-                  id={item}
-                  key={item}
-                  buildingNumber={buildingNumber}
-                  floorNumber={floorNumber}
-                />
-              );
-            })}
+          <div className="mx-5 ">
+            {society == "Estancia" ? (
+              <div className="flex flex-col justify-start gap-4">
+                {estanciaFlats.map((item) => {
+                  return (
+                    <FlatCard
+                      society={society}
+                      id={item}
+                      key={item}
+                      buildingNumber={buildingNumber}
+                      floorNumber={floorNumber}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex flex-col justify-start gap-4">
+                {abodeFlats.map((item) => {
+                  return (
+                    <FlatCard
+                      society={society}
+                      id={item}
+                      key={item}
+                      buildingNumber={buildingNumber}
+                      floorNumber={floorNumber}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
       </main>
