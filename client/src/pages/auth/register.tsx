@@ -1,4 +1,5 @@
 import InputField from "@/components/inputField";
+import { useRole } from "@/context/rolte";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -8,7 +9,8 @@ function Register() {
   const router = useRouter();
   const [tenent, setTenent] = useState(false);
   const [flatSeeker, setFlatSeeker] = useState(false);
-  const [role, setRole] = useState(false);
+  const [rolee, setRolee] = useState(false);
+  const { setRole, setRoleData } = useRole();
 
   return (
     <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
@@ -17,13 +19,13 @@ function Register() {
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
         </div>
-        {role && (
+        {rolee && (
           <div
             className="text-base text-mywhite/60"
             onClick={() => {
               setTenent(false);
               setFlatSeeker(false);
-              setRole(false);
+              setRolee(false);
             }}
           >
             &lt; change role
@@ -35,16 +37,16 @@ function Register() {
         <h1 className="text-4xl font-bold text-mywhite">
           Register{" "}
           <span className="text-xl text-purple-400">
-            as{role ? (tenent ? " Tenent" : " Flat Seeker") : null}
+            as{rolee ? (tenent ? " Tenent" : " Flat Seeker") : null}
           </span>
         </h1>
-        {!role && (
+        {!rolee && (
           <main className="flex justify-around mt-10">
             <button
               className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-myorange"
               onClick={() => {
                 setTenent(true);
-                setRole(true);
+                setRolee(true);
               }}
             >
               Tenent
@@ -53,28 +55,39 @@ function Register() {
               className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-mypink"
               onClick={() => {
                 setFlatSeeker(true);
-                setRole(true);
+                setRolee(true);
               }}
             >
               Flat Seeker
             </button>
           </main>
         )}
-        {role && (
+        {rolee && (
           <section className="flex-col justify-start gap-2 mt-6">
             <Formik
               initialValues={{
-                email: "",
-                password: "",
+                name: "Ethan Hunt",
+                register: "RA2011026010185",
+                email: "hs3477@srmist.edu.in",
+                password: "Shibu3477@",
               }}
               validationSchema={Yup.object({
+                name: Yup.string().required(),
+                register: Yup.string().required(),
                 email: Yup.string().email().required("Please enter email"),
                 password: Yup.string()
                   .required("Please enter password")
                   .min(8, "Password should be at least 8 characters"),
               })}
               onSubmit={(values) => {
-                console.log(values);
+                setRoleData(values);
+                if (tenent) {
+                  setRole("Tenent");
+                }
+                if (flatSeeker) {
+                  setRole("Flat Seeker");
+                }
+                router.push("/details");
               }}
             >
               {(formik) => (
@@ -116,19 +129,19 @@ function Register() {
                 </form>
               )}
             </Formik>
-            <p className="mt-4 font-medium text-mywhite ">
-              Already have an account ?{" "}
-              <span
-                className="font-bold text-myorange hover:cursor-pointer"
-                onClick={() => {
-                  router.push("/auth/login");
-                }}
-              >
-                Login Now !
-              </span>
-            </p>
           </section>
         )}
+        <p className="mt-4 font-medium text-mywhite ">
+          Already have an account ?{" "}
+          <span
+            className="font-bold text-myorange hover:cursor-pointer"
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+          >
+            Login Now !
+          </span>
+        </p>
       </div>
     </main>
   );
