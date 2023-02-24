@@ -10,7 +10,7 @@ function Login() {
   const router = useRouter();
   return (
     <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
-      <h1 className="text-5xl font-title">
+      <h1 className="text-5xl font-title" onClick={()=>router.push("/")}>
         <span className=" text-mygreen">on</span>
         <span className=" text-myyellow">Rent</span>
       </h1>

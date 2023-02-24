@@ -25,14 +25,22 @@ export default function Home() {
               </span>
             </p>
           </div>
-          <div className="mt-5 ">
+          <div className="flex items-center justify-start gap-5 mt-5">
             <button
               className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-myorange"
               onClick={() => {
-                router.push("auth/login");
+                router.push("/society");
               }}
             >
               Search
+            </button>
+            <button
+              className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-mypink"
+              onClick={() => {
+                router.push("/auth/login");
+              }}
+            >
+              Login
             </button>
           </div>
         </div>

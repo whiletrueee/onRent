@@ -6,16 +6,61 @@ import * as Yup from "yup";
 
 function Register() {
   const router = useRouter();
-  const [student, setStudent] = useState(false);
+  const [tenent, setTenent] = useState(false);
+  const [flatSeeker, setFlatSeeker] = useState(false);
+  const [role, setRole] = useState(false);
+
   return (
     <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
-      <h1 className="text-5xl font-title">
-        <span className=" text-mygreen">on</span>
-        <span className=" text-myyellow">Rent</span>
+      <h1 className="flex items-center justify-between text-5xl font-title">
+        <div className="w-fit" onClick={() => router.push("/")}>
+          <span className=" text-mygreen">on</span>
+          <span className=" text-myyellow">Rent</span>
+        </div>
+        {role && (
+          <div
+            className="text-base text-mywhite/60"
+            onClick={() => {
+              setTenent(false);
+              setFlatSeeker(false);
+              setRole(false);
+            }}
+          >
+            &lt; change role
+          </div>
+        )}
       </h1>
-      {student ? (
-        <div className="mt-[5rem]">
-          <h1 className="text-4xl font-bold text-mywhite">Register</h1>
+
+      <div className="mt-[2rem]">
+        <h1 className="text-4xl font-bold text-mywhite">
+          Register{" "}
+          <span className="text-xl text-purple-400">
+            as{role ? (tenent ? " Tenent" : " Flat Seeker") : null}
+          </span>
+        </h1>
+        {!role && (
+          <main className="flex justify-around mt-10">
+            <button
+              className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-myorange"
+              onClick={() => {
+                setTenent(true);
+                setRole(true);
+              }}
+            >
+              Tenent
+            </button>
+            <button
+              className="px-4 py-2 text-xl font-bold rounded-md text-myblack bg-mypink"
+              onClick={() => {
+                setFlatSeeker(true);
+                setRole(true);
+              }}
+            >
+              Flat Seeker
+            </button>
+          </main>
+        )}
+        {role && (
           <section className="flex-col justify-start gap-2 mt-6">
             <Formik
               initialValues={{
@@ -66,17 +111,6 @@ function Register() {
                     type="submit"
                     className="px-6 py-1 mt-4 text-xl font-bold rounded-md text-myblack bg-mygreen"
                   >
-                    {/* {fetch ? (
-                    <Spinner
-                      thickness="5px"
-                      speed="0.35s"
-                      emptyColor="white"
-                      color="blue.200"
-                      size="md"
-                    />
-                  ) : (
-                    "Login"
-                  )} */}
                     Register
                   </button>
                 </form>
@@ -94,10 +128,8 @@ function Register() {
               </span>
             </p>
           </section>
-        </div>
-      ) : (
-        <div>Coming Soon</div>
-      )}
+        )}
+      </div>
     </main>
   );
 }
