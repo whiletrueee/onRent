@@ -11,7 +11,7 @@ function Society() {
       <div className="flex flex-col justify-center mt-[5rem] gap-5 font-bold text-xl">
         <button
           onClick={() => {
-            router.push("/Abode/Block-A");
+            router.push("/Abode/Block-A/Floor-1");
           }}
           className="px-6 py-2 tracking-wider text-center border-2 border-gray-500 rounded-md text-myblue"
         >
@@ -19,7 +19,7 @@ function Society() {
         </button>
         <button
           onClick={() => {
-            router.push("/Estancia/Tower-1");
+            router.push("/Estancia/Tower-1/Floor-1");
           }}
           className="px-6 py-2 tracking-wider text-center border-2 border-gray-500 rounded-md text-myblue"
         >
