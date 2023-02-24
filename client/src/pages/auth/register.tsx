@@ -87,7 +87,7 @@ function Register() {
                 if (flatSeeker) {
                   setRole("Flat Seeker");
                 }
-                router.push("/details");
+                router.push("/society");
               }}
             >
               {(formik) => (

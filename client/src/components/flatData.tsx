@@ -2,7 +2,6 @@ import { useRole } from "@/context/rolte";
 import { Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
-import DropdownSelect from "./dropDownSelect";
 import InputField from "./inputField";
 
 function FlatData() {
@@ -10,6 +9,7 @@ function FlatData() {
   const [bhk, setBHK] = useState<number | null>();
   const [bathrooms, setBathrooms] = useState<number | null>();
   const [availablity, setAvailablity] = useState<boolean>(true);
+  const { setFlatData, flatNumber } = useRole();
   return (
     <section className="flex-col justify-start gap-2 mt-6">
       <Formik
@@ -18,7 +18,8 @@ function FlatData() {
           bhk,
           bathrooms,
           furnished,
-          availablity: false,
+          availablity,
+          flat:flatNumber
         }}
         validationSchema={Yup.object({
           bhk: Yup.number().required(),
@@ -26,7 +27,9 @@ function FlatData() {
           furnished: Yup.string().required(),
           availablity: Yup.boolean().required(),
         })}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => {
+          setFlatData(values);
+        }}
       >
         {(formik) => (
           <form

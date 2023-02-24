@@ -43,7 +43,7 @@ function Details() {
       </div>
       <button
         onClick={() => {
-          router.push("/flatDetails");
+          router.push("/myprofile");
         }}
         className="px-6 py-1 mt-4 text-xl font-bold rounded-md text-myblack bg-myblue"
       >

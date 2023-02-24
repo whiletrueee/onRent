@@ -7,6 +7,7 @@ import SelectFloor from "@/components/selectFloor";
 import Core from "@/components/core";
 import FlatCard from "@/components/flatCard";
 import { abodeFlats, estanciaFlats } from "@/utils/constants/data";
+import { useRole } from "@/context/rolte";
 
 function Floor() {
   const router = useRouter();
@@ -18,6 +19,8 @@ function Floor() {
   const [buildings, setBuildings] = useState(building);
   const [floorNumber, setFloorNumber] = useState(1);
   const [buildingNumber, setBuildingNumber] = useState(1);
+  const { addMyFlat, setAddMyFlat, setFlatNumber } = useRole();
+  const [selectedFlat, setSelectedFlat] = useState<string | undefined>();
 
   return (
     <>
@@ -30,7 +33,10 @@ function Floor() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col justify-start h-screen bg-myblack">
-        <h1 className="px-5 text-5xl font-title py-7" onClick={()=>router.push("/")}>
+        <h1
+          className="px-5 text-5xl font-title py-7"
+          onClick={() => router.push("/")}
+        >
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
         </h1>
@@ -97,40 +103,129 @@ function Floor() {
         </section>
 
         <section className="my-5 mt-5 overflow-y-scroll">
-          <h1 className="pb-2 mx-5 my-3 text-2xl border-b-2 border-gray-800 text-mywhite">
-            Flats
-          </h1>
-          <div className="mx-5 ">
-            {society == "Estancia" ? (
-              <div className="flex flex-col justify-start gap-4">
-                {estanciaFlats.map((item) => {
-                  return (
-                    <FlatCard
-                      society={society}
-                      id={item}
-                      key={item}
-                      buildingNumber={buildingNumber}
-                      floorNumber={floorNumber}
-                    />
-                  );
-                })}
-              </div>
+          <h1 className="flex items-center justify-between pb-2 mx-5 my-3 text-2xl text-mywhite">
+            {addMyFlat ? (
+              <span className="font-bold">Select your flat</span>
             ) : (
-              <div className="flex flex-col justify-start gap-4">
-                {abodeFlats.map((item) => {
-                  return (
-                    <FlatCard
-                      society={society}
-                      id={item}
-                      key={item}
-                      buildingNumber={buildingNumber}
-                      floorNumber={floorNumber}
-                    />
-                  );
-                })}
-              </div>
+              <span className="font-bold">Flats</span>
             )}
-          </div>
+
+            {!addMyFlat ? (
+              <button
+                onClick={() => {
+                  router.push("/auth/login");
+                  setAddMyFlat(true);
+                }}
+                className="px-4 py-1 text-xl font-bold rounded-md bg-myorange text-myblack"
+              >
+                + Add Your Flat
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setFlatNumber(selectedFlat);
+                  router.push("/flatDetails");
+                }}
+                className="px-4 py-1 text-xl font-bold rounded-md bg-myblue text-myblack"
+              >
+                Proceed
+              </button>
+            )}
+          </h1>
+          {addMyFlat ? (
+            <div className="mx-5 mt-10">
+              {society == "Estancia" ? (
+                <div className="flex flex-wrap justify-start gap-6">
+                  {estanciaFlats.map((item) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          const num = `${buildingNumber}${
+                            floorNumber % 10 == floorNumber
+                              ? `0${floorNumber}`
+                              : floorNumber
+                          }${item}`;
+                          setSelectedFlat(num);
+                        }}
+                        key={item}
+                        className="w-[20%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-2xl rounded-lg"
+                      >
+                        <span>
+                          {buildingNumber}
+                          {floorNumber % 10 == floorNumber
+                            ? `0${floorNumber}`
+                            : floorNumber}
+                          {item}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="flex flex-wrap justify-start gap-6">
+                  {abodeFlats.map((item) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          const num = `${String.fromCharCode(
+                            buildingNumber + 64
+                          )}${floorNumber}${0}${item}`;
+                          setSelectedFlat(num);
+                        }}
+                        key={item}
+                        className="w-[20%] bg-mypink flex justify-center items-center font-medium font-title text-myblack text-2xl rounded-lg"
+                      >
+                        <span>
+                          {String.fromCharCode(buildingNumber + 64)}
+                          {floorNumber}
+                          {0}
+                          {item}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="mt-6 text-xl font-medium text-center text-mywhite">
+                Selected flat is: 
+                <span className="p-1 ml-2 font-bold rounded-md bg-myyellow text-myblack">
+                  {selectedFlat}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="mx-5 ">
+              {society == "Estancia" ? (
+                <div className="flex flex-col justify-start gap-4">
+                  {estanciaFlats.map((item) => {
+                    return (
+                      <FlatCard
+                        society={society}
+                        id={item}
+                        key={item}
+                        buildingNumber={buildingNumber}
+                        floorNumber={floorNumber}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="flex flex-col justify-start gap-4">
+                  {abodeFlats.map((item) => {
+                    return (
+                      <FlatCard
+                        society={society}
+                        id={item}
+                        key={item}
+                        buildingNumber={buildingNumber}
+                        floorNumber={floorNumber}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </section>
       </main>
     </>

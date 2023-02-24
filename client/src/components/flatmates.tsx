@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import InputField from "./inputField";
 
 function FlatMates({ id }: { id: number }) {
+  const { addFlatMateData } = useRole();
   return (
     <section className="flex-col justify-start gap-2 mt-6">
       <Formik
@@ -15,7 +16,9 @@ function FlatMates({ id }: { id: number }) {
           name: Yup.string().required(),
           register: Yup.string().required(),
         })}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => {
+          addFlatMateData(values);
+        }}
       >
         {(formik) => (
           <form
@@ -23,7 +26,7 @@ function FlatMates({ id }: { id: number }) {
             onSubmit={formik.handleSubmit}
           >
             <div className="p-2 bg-black rounded-md ">
-              <span className="text-mywhite">{id+1}</span>
+              <span className="text-mywhite">{id + 1}</span>
               <InputField
                 name="name"
                 label="Name"

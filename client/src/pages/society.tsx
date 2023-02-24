@@ -1,14 +1,24 @@
+import { useRole } from "@/context/rolte";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 function Society() {
   const router = useRouter();
+
+  const { addMyFlat } = useRole();
   return (
-    <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7" >
-      <h1 className="text-5xl font-title" onClick={()=>router.push("/")}>
+    <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
+      <h1 className="text-5xl font-title" onClick={() => router.push("/")}>
         <span className=" text-mygreen">on</span>
         <span className=" text-myyellow">Rent</span>
       </h1>
+
       <div className="flex flex-col justify-center mt-[5rem] gap-5 font-bold text-xl">
+        {addMyFlat && (
+          <div className="text-xl font-bold text-mywhite">
+            Choose your society
+          </div>
+        )}
         <button
           onClick={() => {
             router.push("/Abode/Block-A/Floor-1");
