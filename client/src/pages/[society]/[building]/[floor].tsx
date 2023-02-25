@@ -19,7 +19,7 @@ function Floor() {
   const [buildings, setBuildings] = useState(building);
   const [floorNumber, setFloorNumber] = useState(1);
   const [buildingNumber, setBuildingNumber] = useState(1);
-  const { role, addMyFlat, setAddMyFlat, setFlatNumber } = useRole();
+  const { role, addMyFlat, setAddMyFlat, setFlatNumber, setRole } = useRole();
   const [selectedFlat, setSelectedFlat] = useState<string | undefined>();
 
   return (
@@ -35,7 +35,10 @@ function Floor() {
       <main className="flex flex-col justify-start h-screen bg-myblack">
         <h1
           className="px-5 text-5xl font-title py-7"
-          onClick={() => router.push("/")}
+          onClick={() => {
+            router.push("/");
+            setRole(undefined);
+          }}
         >
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
@@ -105,13 +108,15 @@ function Floor() {
         <section className="my-5 mt-5 overflow-y-scroll">
           <h1 className="flex items-center justify-between pb-2 mx-5 my-3 text-2xl text-mywhite">
             {addMyFlat ? (
-              <span className="font-bold">Select your flat</span>
+              role === "Tenent" || role == undefined ? (
+                <span className="font-bold">Select your flat</span>
+              ) : null
             ) : (
               <span className="font-bold">Flats</span>
             )}
 
             {!addMyFlat ? (
-              role === "Tenent" ? (
+              role === "Tenent" || role == undefined ? (
                 <button
                   onClick={() => {
                     router.push("/auth/login");
@@ -122,7 +127,7 @@ function Floor() {
                   + Add Your Flat
                 </button>
               ) : null
-            ) : role === "Tenent" ? (
+            ) : role === "Tenent" || role == undefined ? (
               <button
                 onClick={() => {
                   setFlatNumber(selectedFlat);
@@ -134,7 +139,7 @@ function Floor() {
               </button>
             ) : null}
           </h1>
-          {addMyFlat ? (
+          {addMyFlat && (role === "Tenent" || role == undefined) ? (
             <div className="mx-5 mt-10">
               {society == "Estancia" ? (
                 <div className="flex flex-wrap justify-start gap-6">

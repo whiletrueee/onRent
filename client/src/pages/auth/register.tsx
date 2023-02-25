@@ -15,7 +15,13 @@ function Register() {
   return (
     <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
       <h1 className="flex items-center justify-between text-5xl font-title">
-        <div className="w-fit" onClick={() => router.push("/")}>
+        <div
+          className="w-fit"
+          onClick={() => {
+            router.push("/");
+            setRole(undefined);
+          }}
+        >
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
         </div>

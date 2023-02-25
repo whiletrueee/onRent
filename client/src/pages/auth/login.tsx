@@ -1,4 +1,5 @@
 import InputField from "@/components/inputField";
+import { useRole } from "@/context/rolte";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
@@ -8,9 +9,16 @@ function Login() {
     <p className="pl-4 mt-1 text-base text-mypink">{message}</p>
   );
   const router = useRouter();
+  const {setRole} = useRole();
   return (
     <main className="flex flex-col justify-start h-screen px-10 bg-myblack py-7">
-      <h1 className="text-5xl font-title" onClick={()=>router.push("/")}>
+      <h1
+        className="text-5xl font-title"
+        onClick={() => {
+          router.push("/");
+          setRole(undefined);
+        }}
+      >
         <span className=" text-mygreen">on</span>
         <span className=" text-myyellow">Rent</span>
       </h1>

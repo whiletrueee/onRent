@@ -10,6 +10,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { BsFillPeopleFill } from "react-icons/bs";
+import { useRole } from "@/context/rolte";
 
 function FlatCard({
   society,
@@ -23,6 +24,7 @@ function FlatCard({
   buildingNumber: number;
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { role } = useRole();
   return (
     <>
       <div
@@ -110,9 +112,14 @@ function FlatCard({
                 <span>Available</span>
               </div>
               <h4 className="text-myorange">(3 students Intrested)</h4>
-              <button className="px-4 py-1 text-xl font-bold rounded-md bg-myyellow text-myblack w-fit">
-                I am Intrested
-              </button>
+              {role == "Tenent" ? null : (
+                <button
+                  onClick={onClose}
+                  className="px-4 py-1 text-xl font-bold rounded-md bg-myyellow text-myblack w-fit"
+                >
+                  I am Intrested
+                </button>
+              )}
             </div>
           </ModalBody>
         </ModalContent>

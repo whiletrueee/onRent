@@ -6,7 +6,7 @@ interface RoleContextType {
   addMyFlat: boolean;
   setAddMyFlat: (addMyFlat: boolean) => void;
   role: string | undefined;
-  setRole: (role: string) => void;
+  setRole: (role: string | undefined) => void;
   roleData: roleDataType | undefined;
   setRoleData: (roleData: roleDataType) => void;
   flatMateData: flatMateDataType[] | undefined;

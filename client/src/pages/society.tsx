@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function Society() {
   const router = useRouter();
+  const { role } = useRole();
 
   const { addMyFlat } = useRole();
   return (
@@ -14,11 +15,12 @@ function Society() {
       </h1>
 
       <div className="flex flex-col justify-center mt-[5rem] gap-5 font-bold text-xl">
-        {addMyFlat && (
-          <div className="text-xl font-bold text-mywhite">
-            Choose your society
-          </div>
-        )}
+        {addMyFlat &&
+          (role == "Tenent" || role == undefined ? (
+            <div className="text-xl font-bold text-mywhite">
+              Choose your society
+            </div>
+          ) : null)}
         <button
           onClick={() => {
             router.push("/Abode/Block-A/Floor-1");

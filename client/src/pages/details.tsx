@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function Details() {
   const router = useRouter();
-  const { roleData } = useRole();
+  const { roleData, setRole } = useRole();
   const [flatMateCount, setFlatMateList] = useState([1]);
   const [count, setCount] = useState(1);
 
@@ -16,7 +16,13 @@ function Details() {
   return (
     <main className="flex flex-col justify-start h-screen px-5 bg-myblack py-7">
       <h1 className="text-5xl font-title">
-        <div className="w-fit" onClick={() => router.push("/")}>
+        <div
+          className="w-fit"
+          onClick={() => {
+            router.push("/");
+            setRole(undefined);
+          }}
+        >
           <span className=" text-mygreen">on</span>
           <span className=" text-myyellow">Rent</span>
         </div>
