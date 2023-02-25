@@ -19,7 +19,7 @@ function FlatData() {
           bathrooms,
           furnished,
           availablity,
-          flat:flatNumber
+          flat: flatNumber,
         }}
         validationSchema={Yup.object({
           bhk: Yup.number().required(),
@@ -33,7 +33,7 @@ function FlatData() {
       >
         {(formik) => (
           <form
-            className="flex flex-col justify-start gap-2"
+            className="flex flex-col justify-start gap-2 overflow-y-scroll"
             onSubmit={formik.handleSubmit}
           >
             <InputField name="bhk" label="BHK" type="number" placeholder="3" />
@@ -118,6 +118,9 @@ function FlatData() {
               >
                 No
               </button>
+            </div>
+            <div className="px-6 py-2 mt-2 font-bold border-2 border-gray-500 rounded-md text-mywhite">
+              + Add Photo
             </div>
           </form>
         )}

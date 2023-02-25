@@ -1,4 +1,10 @@
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import Image from "next/image";
+import flat1 from "../assets/images/abode/flat1.jpg";
+import flat0 from "../assets/images/abode/flat0.jpg";
+import flate0 from "../assets/images/estancia/flate0.jpg";
+import flate1 from "../assets/images/estancia/flate1.jpg";
+import flate2 from "../assets/images/estancia/flate2.jpg";
 import {
   Modal,
   ModalOverlay,
@@ -93,7 +99,7 @@ function FlatCard({
             </ModalHeader>
             <ModalCloseButton color={"white"} />
           </div>
-          <ModalBody className="px-5">
+          <ModalBody className="px-5 overflow-y-scroll">
             <div className="flex flex-col justify-start gap-3 py-1 text-lg font-medium text-gray-400">
               <h3>
                 <span className="text-xl font-bold text-mygreen">3</span> BHK
@@ -119,6 +125,48 @@ function FlatCard({
                 >
                   I am Intrested
                 </button>
+              )}
+              {society == "Estancia" ? (
+                <div className="flex justify-start items-start overflow-x-scroll w-[20rem] px-2 gap-3">
+                  <Image
+                    loading="eager"
+                    src={flate0}
+                    alt="Picture of the author"
+                    width={400}
+                    height={400}
+                  />
+                  <Image
+                    loading="eager"
+                    src={flate1}
+                    alt="Picture of the author"
+                    width={400}
+                    height={400}
+                  />
+                  <Image
+                    loading="eager"
+                    src={flate2}
+                    alt="Picture of the author"
+                    width={400}
+                    height={400}
+                  />
+                </div>
+              ) : (
+                <div className="flex justify-start items-start overflow-x-scroll w-[20rem] px-2 gap-3 mb-10">
+                  <Image
+                    loading="eager"
+                    src={flat0}
+                    alt="Picture of the author"
+                    width={400}
+                    height={400}
+                  />
+                  <Image
+                    loading="eager"
+                    src={flat1}
+                    alt="Picture of the author"
+                    width={400}
+                    height={400}
+                  />
+                </div>
               )}
             </div>
           </ModalBody>
