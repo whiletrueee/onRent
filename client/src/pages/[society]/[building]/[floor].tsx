@@ -19,7 +19,7 @@ function Floor() {
   const [buildings, setBuildings] = useState(building);
   const [floorNumber, setFloorNumber] = useState(1);
   const [buildingNumber, setBuildingNumber] = useState(1);
-  const { addMyFlat, setAddMyFlat, setFlatNumber } = useRole();
+  const { role, addMyFlat, setAddMyFlat, setFlatNumber } = useRole();
   const [selectedFlat, setSelectedFlat] = useState<string | undefined>();
 
   return (
@@ -111,16 +111,18 @@ function Floor() {
             )}
 
             {!addMyFlat ? (
-              <button
-                onClick={() => {
-                  router.push("/auth/login");
-                  setAddMyFlat(true);
-                }}
-                className="px-4 py-1 text-xl font-bold rounded-md bg-myorange text-myblack"
-              >
-                + Add Your Flat
-              </button>
-            ) : (
+              role === "Tenent" ? (
+                <button
+                  onClick={() => {
+                    router.push("/auth/login");
+                    setAddMyFlat(true);
+                  }}
+                  className="px-4 py-1 text-xl font-bold rounded-md bg-myorange text-myblack"
+                >
+                  + Add Your Flat
+                </button>
+              ) : null
+            ) : role === "Tenent" ? (
               <button
                 onClick={() => {
                   setFlatNumber(selectedFlat);
@@ -130,7 +132,7 @@ function Floor() {
               >
                 Proceed
               </button>
-            )}
+            ) : null}
           </h1>
           {addMyFlat ? (
             <div className="mx-5 mt-10">
@@ -187,7 +189,7 @@ function Floor() {
                 </div>
               )}
               <div className="mt-6 text-xl font-medium text-center text-mywhite">
-                Selected flat is: 
+                Selected flat is:
                 <span className="p-1 ml-2 font-bold rounded-md bg-myyellow text-myblack">
                   {selectedFlat}
                 </span>
@@ -213,13 +215,15 @@ function Floor() {
                 <div className="flex flex-col justify-start gap-4">
                   {abodeFlats.map((item) => {
                     return (
-                      <FlatCard
-                        society={society}
-                        id={item}
-                        key={item}
-                        buildingNumber={buildingNumber}
-                        floorNumber={floorNumber}
-                      />
+                      <>
+                        <FlatCard
+                          society={society}
+                          id={item}
+                          key={item}
+                          buildingNumber={buildingNumber}
+                          floorNumber={floorNumber}
+                        />
+                      </>
                     );
                   })}
                 </div>
